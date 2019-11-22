@@ -7,8 +7,7 @@ module.exports = function (ctx) {
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
-      'i18n',
-      'axios'
+      'i18n'
     ],
 
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -47,7 +46,7 @@ module.exports = function (ctx) {
       directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Notify']
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -80,8 +79,12 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
     devServer: {
       // https: true,
-      // port: 8080,
-      open: true // opens browser window automatically
+      port: 8080,
+      open: true,
+      before (app) {
+        const cors = require('cors')
+        app.use(cors())
+      }
     },
 
     // animations: 'all', // --- includes all animations
