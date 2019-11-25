@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">UFFacilitador</string>
+    <string name="title_activity_main">UFFacilitador</string>
+    <string name="package_name">org.uffacilitador.app</string>
+    <string name="custom_url_scheme">org.uffacilitador.app</string>
+</resources>

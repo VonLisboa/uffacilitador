@@ -28,7 +28,7 @@
       <q-img class="absolute-top" src="" style="height: 150px">
         <div class="absolute-bottom bg-transparent">
           <q-avatar size="56px" class="q-mb-sm">
-            <img src="https://cdn.quasar-framework.org/img/boy-avatar.png">
+            <img src="https://cdn.quasar.dev/img/avatar.png">
           </q-avatar>
           <div class="text-weight-bold">Nome</div>
           <div>Nome nome</div>

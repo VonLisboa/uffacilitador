@@ -15,6 +15,20 @@ const routes = [
     ]
   },
   {
+    path: '/horasaula',
+    component: () => import('layouts/HorasAula.vue'),
+    children: [
+      { path: '', component: () => import('pages/PageHorasAula.vue') }
+    ]
+  },
+  {
+    path: '/takephoto',
+    component: () => import('pages/TakePhoto.vue'),
+    children: [
+      // { path: '', component: () => import('pages/TakePhoto.vue') }
+    ]
+  },
+  {
     path: '/quadro_horarios',
     component: () => import('layouts/MyLayout.vue'),
     children: [

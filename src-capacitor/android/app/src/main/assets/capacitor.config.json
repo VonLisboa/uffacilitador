@@ -1,0 +1,10 @@
+{
+  "appId": "org.uffacilitador.app",
+  "appName": "UFFacilitador",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "server": {
+    "url": "http://192.168.1.214:8080"
+  }
+}

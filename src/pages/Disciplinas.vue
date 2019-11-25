@@ -28,14 +28,15 @@
       <template v-for="(item, key) in items">
         <q-item :key="key">
             <q-item-section>
-                <q-item-label>{{item.disciplina}}</q-item-label>
+                <q-item-label>{{item.disciplina.nome}}</q-item-label>
                 <q-item-label
                     caption
                     lines="2"
                 >Sala: {{item.sala}}</q-item-label>
             </q-item-section>
             <q-item-section side top>
-                <q-btn round color="secondary" icon="av_timer" />
+              <q-btn round color="secondary" icon="av_timer"
+              :to="'/horasaula?id='+item.disciplina.url.split('disciplinas/').pop(-1).replace('/', '')+'&disciplina='+item.disciplina.nome"/>
             </q-item-section>
             <q-item-section side top>
                 <q-btn round color="secondary" icon="delete_outline" @click="del(key)" />
@@ -68,8 +69,8 @@ export default {
       response.json().then(data => {
         data.results.forEach(element => {
           fetch(element.disciplina).then(response => {
-            response.json().then(data => {
-              this.items.push({ id: element.url, sala: element.sala, disciplina: data.nome })
+            response.json().then(disciplina => {
+              this.items.push({ id: element.url, sala: element.sala, disciplina: disciplina })
             })
           })
         })
@@ -96,28 +97,30 @@ export default {
           this.optionsDisciplina.splice(this.val_disciplina, 1)
           this.optionsDisciplina.push(data)
           this.val_disciplina = data
+        }).catch(e => {
+          this.$q.notify({
+            color: 'negative',
+            message: 'Falha na conexão com a internet!'
+          })
         })
       }
 
-      fetch(`http://127.0.0.1:8000/userdisciplinas/`, {
+      await fetch(`http://127.0.0.1:8000/userdisciplinas/`, {
         method: 'post',
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({ disciplina: this.val_disciplina.url, user: 'http://127.0.0.1:8000/users/1/' })
       }).then(response => {
         return response.json()
+      }).then(data => {
+        let obj = { id: data.url, sala: '', disciplina: this.val_disciplina }
+        this.items.push(obj)
       })
-
-      let obj = { id: this.val_disciplina.url, sala: '', disciplina: this.val_disciplina.nome }
-      this.items.push(obj)
       this.val_disciplina = null
     },
     del: function (index) {
       let element = this.items.splice(index, 1)
-      console.log(element)
       fetch(element[0].id, {
         method: 'delete'
-      }).then(response => {
-        return response.json()
       })
     },
     create_disciplina (val, done) {
