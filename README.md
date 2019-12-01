@@ -27,4 +27,10 @@ See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
 
 ### Screenshots
 
-![Alt text](/screenshot/2019-12-01 010010.png?raw=true)
+![image](/screenshot/010010.png)
+![image](/screenshot/010020.png)
+![image](/screenshot/010021.png)
+![image](/screenshot/010022.png)
+![image](/screenshot/010142.png)
+![image](/screenshot/023832.png)
+![image](/screenshot/024315.png)
