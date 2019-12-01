@@ -1,30 +1,36 @@
 <template>
   <div>
+    <q-btn color="primary" label="Take Picture" @click="takePicture" />
     <q-btn color="primary" label="Get Picture" @click="captureImage" />
-
     <img :src="imageSrc">
+    {{this.imageSrc}}
+    {{this.path}}
   </div>
 </template>
 
 <script>
-import { Capacitor, Plugins, CameraResultType, FilesystemDirectory } from '@capacitor/core'
+import { Capacitor, Plugins, CameraSource, CameraResultType, FilesystemDirectory } from '@capacitor/core'
 
 const { Camera, Filesystem } = Plugins
 
 export default {
   data () {
     return {
-      imageSrc: ''
+      imageSrc: '',
+      path: null
     }
   },
   methods: {
     async captureImage () {
       const options = {
-        allowEditing: true,
-        resultType: CameraResultType.Uri
+        allowEditing: false,
+        resultType: CameraResultType.Uri,
+        source: CameraSource.Camera
       }
 
       const originalPhoto = await Camera.getPhoto(options)
+      this.imageSrc = originalPhoto.webPath
+      this.path = originalPhoto.path
       const photoInTempStorage = await Filesystem.readFile({ path: originalPhoto.path })
       let date = new Date()
       let time = date.getTime()
@@ -38,9 +44,18 @@ export default {
         directory: FilesystemDirectory.Data,
         path: fileName
       })
-      this.imageSrc = originalPhoto.webPath
+
       let photoPath = Capacitor.convertFileSrc(finalPhotoUri.uri)
       console.log(photoPath)
+    },
+    async takePicture () {
+      const image = await Plugins.Camera.getPhoto({
+        quality: 100,
+        allowEditing: false,
+        resultType: CameraResultType.DataUrl,
+        source: CameraSource.Camera
+      })
+      this.imageSrc = this.sanitizer.bypassSecurityTrustResourceUrl(image && (image.dataUrl))
     }
   }
 }
