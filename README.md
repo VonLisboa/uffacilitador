@@ -21,6 +21,13 @@ npm run lint
 ```bash
 quasar build
 ```
+### Screenshots
 
-### Customize the configuration
-See [Configuring quasar.conf.js](https://quasar.dev/quasar-cli/quasar-conf-js).
+![image](/screenshot/010010.png)
+![image](/screenshot/010020.png)
+![image](/screenshot/010021.png)
+![image](/screenshot/010022.png)
+![image](/screenshot/010142.png)
+![image](/screenshot/023832.png)
+![image](/screenshot/024315.png)
+![image](/screenshot/044325.png)
