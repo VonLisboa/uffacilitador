@@ -11,6 +11,7 @@ export default {
     galeria: 'Galeria',
     repositorios: 'Repositorios',
     sistemas: 'Sistemas',
-    grade_curricular: 'Grade Curricular'
+    grade_curricular: 'Grade Curricular',
+    chat: 'Chat'
   }
 }

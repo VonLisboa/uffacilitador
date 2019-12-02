@@ -43,6 +43,9 @@
                       <q-btn icon="access_time" round color="teal">
                         <q-popup-proxy transition-show="scale" transition-hide="scale">
                           <q-time v-model="item.hora_inicio" format24h>
+                            <div class="row items-center justify-end q-gutter-sm">
+                              <q-btn label="OK" color="primary" flat v-close-popup />
+                            </div>
                           </q-time>
                         </q-popup-proxy>
                       </q-btn>
@@ -56,6 +59,9 @@
                       <q-btn icon="access_time" round color="red">
                         <q-popup-proxy transition-show="scale" transition-hide="scale">
                           <q-time v-model="item.hora_fim" format24h>
+                            <div class="row items-center justify-end q-gutter-sm">
+                              <q-btn label="OK" color="primary" flat v-close-popup />
+                            </div>
                           </q-time>
                         </q-popup-proxy>
                       </q-btn>

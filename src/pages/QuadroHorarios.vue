@@ -5,7 +5,8 @@
 </style>
 <template>
   <div class="full-width q-pa-md" style="max-width: 800px">
-     <q-list bordered class="rounded-borders">
+    <q-pull-to-refresh @refresh="refresh">
+    <q-list bordered class="rounded-borders">
       <q-expansion-item
         expand-separator
         label="Segunda-feira"
@@ -143,6 +144,7 @@
         </q-card>
       </q-expansion-item>
     </q-list>
+    </q-pull-to-refresh>
   </div>
 </template>
 <script>
@@ -157,6 +159,10 @@ export default {
     // ...mapGetters('principal', ['getDisciplinaByUrl'])
   },
   methods: {
+    refresh: async function (done) {
+      await this.$store.dispatch('principal/loadData')
+      done()
+    },
     renderItems: function (day) {
       let newArray = this.items.filter(function (el) {
         return el.dia === day
